@@ -1,22 +1,22 @@
-<div class="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-black">
-  <div class="text-xs uppercase tracking-[0.24em] text-orange-700">Possible duplicate</div>
+<div class="rounded-[1.75rem] border border-ember/30 bg-coal p-5 text-white">
+  <div class="text-xs uppercase tracking-[0.24em] text-ember">Possible duplicate</div>
   <h3 class="mt-2 font-display text-2xl font-bold">Looks like someone may have already found this hole.</h3>
-  <p class="mt-3 text-sm leading-6 text-black/68">View the nearby approved reports below, or confirm that this is a separate menace.</p>
+  <p class="mt-3 text-sm leading-6 text-white/68">View the nearby approved reports below, or confirm that this is a separate menace.</p>
   <div class="mt-4 grid gap-3">
     {% for nearby_pothole, distance in nearby_matches %}
-    <a href="/p/{{ nearby_pothole.public_id }}" class="grid gap-3 rounded-3xl border border-orange-200 bg-white p-3 sm:grid-cols-[88px_1fr_auto]">
-      <div class="overflow-hidden rounded-2xl bg-black/5">
+    <a href="/p/{{ nearby_pothole.public_id }}" class="grid gap-3 rounded-3xl border border-smoke/25 bg-pitch/70 p-3 sm:grid-cols-[88px_1fr_auto]">
+      <div class="overflow-hidden rounded-2xl bg-pitch">
         {% if nearby_pothole.images %}
         <img src="{{ nearby_pothole.images[0].url_path }}" alt="Nearby pothole" class="h-20 w-full object-cover">
         {% else %}
-        <div class="flex h-20 items-center justify-center text-xs uppercase tracking-[0.22em] text-black/40">No image</div>
+        <div class="flex h-20 items-center justify-center text-xs uppercase tracking-[0.22em] text-smoke">No image</div>
         {% endif %}
       </div>
       <div>
         <div class="font-semibold">{{ nearby_pothole.address_hint or nearby_pothole.public_id }}</div>
-        <div class="mt-1 text-sm text-black/60">{{ status_labels[nearby_pothole.status] }}</div>
+        <div class="mt-1 text-sm text-smoke">{{ status_labels[nearby_pothole.status] }}</div>
       </div>
-      <div class="text-sm font-semibold text-black/60">{{ distance|round(0)|int }}m</div>
+      <div class="text-sm font-semibold text-smoke">{{ distance|round(0)|int }}m</div>
     </a>
     {% endfor %}
   </div>

@@ -4,13 +4,13 @@
 <section class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
   <div class="grid gap-6 lg:grid-cols-[0.38fr_0.62fr]">
     <div class="space-y-4">
-      <div class="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-road">
-        <div class="text-xs uppercase tracking-[0.26em] text-lane">Report a hole</div>
+      <div class="rounded-[2rem] border border-smoke/20 bg-coal p-6 shadow-road">
+        <div class="text-xs uppercase tracking-[0.26em] text-ember">Report a hole</div>
         <h1 class="mt-3 font-display text-4xl font-bold">Chicago’s most dignified confession booth.</h1>
         <p class="mt-4 text-sm leading-7 text-white/72">Show us the damage, pin the location, and leave just enough context for an admin to say “yes, that is upsetting.”</p>
       </div>
-      <div class="rounded-[2rem] border border-white/10 bg-lane/10 p-6">
-        <div class="text-xs uppercase tracking-[0.26em] text-lane">Ground rules</div>
+      <div class="rounded-[2rem] border border-ember/25 bg-ember/10 p-6">
+        <div class="text-xs uppercase tracking-[0.26em] text-ember">Ground rules</div>
         <ul class="mt-4 space-y-3 text-sm leading-6 text-white/75">
           <li>Up to {{ settings.max_images_per_pothole }} photos per pothole.</li>
           <li>Chicago locations only in V1.</li>
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <form action="/submit" method="post" enctype="multipart/form-data" class="rounded-[2rem] border border-white/10 bg-white p-5 text-black shadow-road sm:p-7">
+    <form action="/submit" method="post" enctype="multipart/form-data" class="rounded-[2rem] border border-smoke/20 bg-coal p-5 text-white shadow-road sm:p-7">
       <div class="grid gap-5">
         {% if error_message %}
         <div class="rounded-3xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{{ error_message }}</div>
@@ -28,14 +28,14 @@
 
         <div>
           <label class="mb-2 block text-sm font-semibold">Photos</label>
-          <input id="image-input" type="file" name="images" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple class="block w-full rounded-2xl border border-black/10 px-4 py-3 text-sm">
-          <p id="image-help" class="mt-2 text-sm text-black/55">Add up to 3 images. Wide shots help. So do receipts from your mechanic, spiritually.</p>
+          <input id="image-input" type="file" name="images" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple class="block w-full rounded-2xl border border-smoke/30 bg-pitch px-4 py-3 text-sm text-white file:mr-4 file:rounded-full file:border-0 file:bg-ember file:px-4 file:py-2 file:text-sm file:font-semibold file:text-pitch">
+          <p id="image-help" class="mt-2 text-sm text-smoke">Add up to 3 images. Wide shots help. So do receipts from your mechanic, spiritually.</p>
         </div>
 
         <div class="grid gap-5 sm:grid-cols-2">
           <div>
             <label class="mb-2 block text-sm font-semibold">Severity</label>
-            <select name="severity" class="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm">
+            <select name="severity" class="w-full rounded-2xl border border-smoke/30 bg-pitch px-4 py-3 text-sm text-white">
               {% for key, label in severity_labels.items() %}
               <option value="{{ key }}" {% if form_data.severity == key %}selected{% endif %}>{{ label }}</option>
               {% endfor %}
@@ -43,28 +43,28 @@
           </div>
           <div>
             <label class="mb-2 block text-sm font-semibold">Address hint</label>
-            <input type="text" name="address_hint" value="{{ form_data.address_hint or '' }}" placeholder="Near Damen & Augusta" class="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm">
+            <input type="text" name="address_hint" value="{{ form_data.address_hint or '' }}" placeholder="Near Damen & Augusta" class="w-full rounded-2xl border border-smoke/30 bg-pitch px-4 py-3 text-sm text-white placeholder:text-smoke">
           </div>
         </div>
 
         <div>
           <label class="mb-2 block text-sm font-semibold">What happened</label>
-          <textarea name="description" rows="4" placeholder="Optional. Example: swallowed half my coffee and all my trust." class="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm">{{ form_data.description or '' }}</textarea>
+          <textarea name="description" rows="4" placeholder="Optional. Example: swallowed half my coffee and all my trust." class="w-full rounded-2xl border border-smoke/30 bg-pitch px-4 py-3 text-sm text-white placeholder:text-smoke">{{ form_data.description or '' }}</textarea>
         </div>
 
-        <div class="rounded-[1.75rem] border border-black/10 bg-black/[0.03] p-4">
+        <div class="rounded-[1.75rem] border border-smoke/25 bg-pitch/75 p-4">
           <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <label class="block text-sm font-semibold">Location</label>
-              <p class="mt-1 text-sm text-black/55">Use GPS or tap the map to drop a pin.</p>
+              <p class="mt-1 text-sm text-smoke">Use GPS or tap the map to drop a pin.</p>
             </div>
-            <button type="button" id="use-location-btn" class="rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">Use my current location</button>
+            <button type="button" id="use-location-btn" class="rounded-full bg-ember px-4 py-2 text-sm font-semibold text-pitch">Use my current location</button>
           </div>
           <div class="mt-4 grid gap-3 sm:grid-cols-2">
-            <input id="latitude" type="number" step="any" name="latitude" value="{{ form_data.latitude or '' }}" required placeholder="Latitude" class="rounded-2xl border border-black/10 px-4 py-3 text-sm">
-            <input id="longitude" type="number" step="any" name="longitude" value="{{ form_data.longitude or '' }}" required placeholder="Longitude" class="rounded-2xl border border-black/10 px-4 py-3 text-sm">
+            <input id="latitude" type="number" step="any" name="latitude" value="{{ form_data.latitude or '' }}" required placeholder="Latitude" class="rounded-2xl border border-smoke/30 bg-coal px-4 py-3 text-sm text-white placeholder:text-smoke">
+            <input id="longitude" type="number" step="any" name="longitude" value="{{ form_data.longitude or '' }}" required placeholder="Longitude" class="rounded-2xl border border-smoke/30 bg-coal px-4 py-3 text-sm text-white placeholder:text-smoke">
           </div>
-          <div class="mt-3 text-sm text-black/60" id="location-status">Pick a spot in Chicago to continue.</div>
+          <div class="mt-3 text-sm text-smoke" id="location-status">Pick a spot in Chicago to continue.</div>
           <div id="submit-map" class="map-panel mt-4 h-80 rounded-[1.5rem]" data-lat-input="#latitude" data-lng-input="#longitude"></div>
         </div>
 
@@ -74,12 +74,12 @@
           {% endif %}
         </div>
 
-        <label class="hidden items-start gap-3 rounded-2xl border border-black/10 bg-black/[0.03] px-4 py-3 text-sm" id="duplicate-override-row">
-          <input type="checkbox" name="duplicate_override" value="yes" {% if form_data.duplicate_override == 'yes' %}checked{% endif %} class="mt-1 h-4 w-4 rounded border-black/20 text-black">
+        <label class="hidden items-start gap-3 rounded-2xl border border-smoke/30 bg-pitch/70 px-4 py-3 text-sm" id="duplicate-override-row">
+          <input type="checkbox" name="duplicate_override" value="yes" {% if form_data.duplicate_override == 'yes' %}checked{% endif %} class="mt-1 h-4 w-4 rounded border-smoke/40 bg-pitch text-ember">
           <span>I am certain this is a new pothole.</span>
         </label>
 
-        <button type="submit" class="w-full rounded-full bg-lane px-5 py-4 text-base font-bold text-black transition hover:brightness-105">Submit for review</button>
+        <button type="submit" class="w-full rounded-full bg-ember px-5 py-4 text-base font-bold text-pitch transition hover:brightness-105">Submit for review</button>
       </div>
     </form>
   </div>

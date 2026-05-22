@@ -9,13 +9,13 @@ function buildPopup(pothole) {
   return `
     <div class="popup-card">
       ${image}
-      <div style="font-weight:800; margin-bottom:4px;">${pothole.pothole_name || pothole.status_label}</div>
-      <div style="font-size:13px; color:#555;">${pothole.severity_label}</div>
-      <div style="font-size:13px; margin-top:8px;">${(pothole.amount_raised_cents / 100).toFixed(0)} / ${(pothole.funding_goal_cents || 0) / 100}</div>
-      <div style="margin-top:8px; height:8px; background:#eceff1; border-radius:999px; overflow:hidden;">
-        <div style="height:100%; width:${progress}%; background:#f7c948;"></div>
+      <div style="font-weight:800; margin-bottom:4px; color:#ffffff;">${pothole.pothole_name || pothole.status_label}</div>
+      <div style="font-size:13px; color:#808080;">${pothole.severity_label}</div>
+      <div style="font-size:13px; margin-top:8px; color:#ffffff;">${(pothole.amount_raised_cents / 100).toFixed(0)} / ${(pothole.funding_goal_cents || 0) / 100}</div>
+      <div style="margin-top:8px; height:8px; background:#1b1b1b; border-radius:999px; overflow:hidden;">
+        <div style="height:100%; width:${progress}%; background:#ffa31a;"></div>
       </div>
-      <a href="${pothole.detail_url}" style="display:inline-block; margin-top:12px; font-weight:700; color:#111;">Open detail</a>
+      <a href="${pothole.detail_url}" style="display:inline-block; margin-top:12px; font-weight:700; color:#ffa31a;">Open detail</a>
     </div>
   `;
 }
@@ -46,23 +46,23 @@ function renderNearbyWarnings(items) {
   }
 
   container.innerHTML = `
-    <div class="rounded-[1.75rem] border border-orange-200 bg-orange-50 p-5 text-black">
-      <div class="text-xs uppercase tracking-[0.24em] text-orange-700">Possible duplicate</div>
+    <div class="rounded-[1.75rem] border border-ember/30 bg-coal p-5 text-white">
+      <div class="text-xs uppercase tracking-[0.24em] text-ember">Possible duplicate</div>
       <h3 class="mt-2 font-display text-2xl font-bold">Looks like someone may have already found this hole.</h3>
-      <p class="mt-3 text-sm leading-6 text-black/68">Check the nearby approved reports below before creating a new one.</p>
+      <p class="mt-3 text-sm leading-6 text-white/68">Check the nearby approved reports below before creating a new one.</p>
       <div class="mt-4 grid gap-3">
         ${items
           .map(
             (item) => `
-            <a href="${item.detail_url}" class="grid gap-3 rounded-3xl border border-orange-200 bg-white p-3 sm:grid-cols-[88px_1fr_auto]">
-              <div class="overflow-hidden rounded-2xl bg-black/5">
-                ${item.thumbnail_url ? `<img src="${item.thumbnail_url}" alt="Nearby pothole" class="h-20 w-full object-cover">` : `<div class="flex h-20 items-center justify-center text-xs uppercase tracking-[0.22em] text-black/40">No image</div>`}
+            <a href="${item.detail_url}" class="grid gap-3 rounded-3xl border border-smoke/25 bg-pitch/70 p-3 sm:grid-cols-[88px_1fr_auto]">
+              <div class="overflow-hidden rounded-2xl bg-pitch">
+                ${item.thumbnail_url ? `<img src="${item.thumbnail_url}" alt="Nearby pothole" class="h-20 w-full object-cover">` : `<div class="flex h-20 items-center justify-center text-xs uppercase tracking-[0.22em] text-smoke">No image</div>`}
               </div>
               <div>
                 <div class="font-semibold">${item.public_id}</div>
-                <div class="mt-1 text-sm text-black/60">${item.status_label}</div>
+                <div class="mt-1 text-sm text-smoke">${item.status_label}</div>
               </div>
-              <div class="text-sm font-semibold text-black/60">${Math.round(item.distance_meters)}m</div>
+              <div class="text-sm font-semibold text-smoke">${Math.round(item.distance_meters)}m</div>
             </a>
           `
           )

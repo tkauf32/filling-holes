@@ -4,61 +4,60 @@
 <section class="mx-auto max-w-6xl px-4 pt-10 sm:px-6 sm:pt-14">
   <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
     <div class="space-y-6">
-      <div class="inline-flex items-center rounded-full border border-lane/30 bg-lane/10 px-4 py-2 text-sm font-semibold text-lane">
-        Report a hole. Fund a fix. Claim the glory.
+      <div class="inline-flex items-center rounded-full border border-ember/35 bg-ember/10 px-4 py-2 text-sm font-semibold text-ember">
+        You find a hole. Community funds that hole. We fill that hole.
       </div>
       <div class="space-y-4">
         <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight text-white sm:text-6xl">
-          Civic reporting, mild satire, and one less axle attack.
+          It is our Glory to help you fill holes. 
         </h1>
         <p class="max-w-2xl text-lg leading-8 text-white/72">
-          Spot a pothole. Drop a pin. Let the city and the crowd do the emotional processing. FillingHoles.com turns Chicago street trauma into a clean public scoreboard.
+          Sick of all these holes? Yeah, we are too. Snap a pic of your hole, drop a pin on that hole, and unlike that void Your Ex left in your heart, we'll actually fill it. Like anyone, we're sick of these MothaF***in' holes in this MothaF***in' City. Fillingholes.com aims to enhance the roads and alleys of Chicago, one hole at a time. 
         </p>
       </div>
       <div class="flex flex-col gap-3 sm:flex-row">
-        <a href="/submit" class="inline-flex items-center justify-center rounded-full bg-lane px-6 py-4 text-base font-bold text-black shadow-road transition hover:translate-y-[-1px]">Report a hole</a>
-        <a href="/map" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-4 text-base font-bold text-white transition hover:bg-white/10">View the map</a>
+        <a href="/submit" class="inline-flex items-center justify-center rounded-full bg-ember px-6 py-4 text-base font-bold text-pitch shadow-road transition hover:translate-y-[-1px]">Report a hole</a>
+        <a href="/map" class="inline-flex items-center justify-center rounded-full border border-smoke/30 bg-coal px-6 py-4 text-base font-bold text-white transition hover:border-ember/50 hover:text-ember">View the map</a>
       </div>
       <div class="grid gap-4 sm:grid-cols-3">
-        <div class="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-road">
-          <div class="text-xs uppercase tracking-[0.28em] text-lane">Snap it</div>
-          <p class="mt-3 text-sm leading-6 text-white/70">Upload up to three photos of the depression that ruined your commute.</p>
+        <div class="rounded-3xl border border-smoke/20 bg-coal p-5 shadow-road">
+          <div class="text-xs uppercase tracking-[0.28em] text-ember">Snap it</div>
+          <p class="mt-3 text-sm leading-6 text-white/70">Upload photos of that abominable void. Use location or drop a pin to submit. We'll figure out the repair costs and post it.</p>
         </div>
-        <div class="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-road">
-          <div class="text-xs uppercase tracking-[0.28em] text-lane">Pin it</div>
-          <p class="mt-3 text-sm leading-6 text-white/70">Use GPS or tap the map to pinpoint the exact crater of concern.</p>
+        <div class="rounded-3xl border border-smoke/20 bg-coal p-5 shadow-road">
+          <div class="text-xs uppercase tracking-[0.28em] text-ember">Fund it</div>
+          <p class="mt-3 text-sm leading-6 text-white/70">Free load off the rich in your community to pay for that pit of despair. Or just fund it yourself. Are you really that broke?  </p>
         </div>
-        <div class="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-road">
-          <div class="text-xs uppercase tracking-[0.28em] text-lane">Fund it</div>
-          <p class="mt-3 text-sm leading-6 text-white/70">Crowdfund the fake estimate, then compete for ceremonial naming rights.</p>
+        <div class="rounded-3xl border border-smoke/20 bg-coal p-5 shadow-road">
+          <div class="text-xs uppercase tracking-[0.28em] text-ember">Fill it</div>
+          <p class="mt-3 text-sm leading-6 text-white/70">We're broke but we ain't lazy. Once that hole is funded, we'll bury that Son of a B*tch for good.</p>
         </div>
       </div>
     </div>
 
-    <div class="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/8 via-white/5 to-transparent p-6 shadow-road">
+    <div class="rounded-[2rem] border border-smoke/20 bg-gradient-to-br from-coal via-coal/95 to-pitch p-6 shadow-road">
       <div class="grid gap-4 sm:grid-cols-2">
-        <div class="rounded-3xl bg-white text-black p-5">
-          <div class="text-xs uppercase tracking-[0.26em] text-black/45">Public holes</div>
+        <div class="rounded-3xl border border-smoke/20 bg-pitch p-5 text-white">
+          <div class="text-xs uppercase tracking-[0.26em] text-smoke">Public holes</div>
           <div class="mt-3 font-display text-4xl font-bold">{{ total_public }}</div>
-          <p class="mt-2 text-sm text-black/60">Approved, visible, and ready for simulated generosity.</p>
+          <p class="mt-2 text-sm text-smoke">Public holes that just gotta be filled.</p>
         </div>
         <div class="rounded-3xl bg-limeglow text-black p-5">
           <div class="text-xs uppercase tracking-[0.26em] text-black/45">Fully funded</div>
           <div class="mt-3 font-display text-4xl font-bold">{{ total_funded }}</div>
-          <p class="mt-2 text-sm text-black/60">Proof that fake money can still move people.</p>
+          <p class="mt-2 text-sm text-black/60">Fully funded & waiting to filled.</p>
         </div>
       </div>
-      <div class="mt-5 rounded-3xl border border-white/10 bg-black/20 p-5">
+      <div class="mt-5 rounded-3xl border border-smoke/20 bg-pitch/80 p-5">
         <div class="flex items-center justify-between gap-4">
           <div>
-            <div class="text-xs uppercase tracking-[0.26em] text-white/45">Tonight’s demo flow</div>
-            <h2 class="mt-2 font-display text-2xl font-bold">Submit one. Approve one. Fund one.</h2>
+            <div class="text-xs uppercase tracking-[0.26em] text-smoke">Manage your holes</div>
+            <h2 class="mt-2 font-display text-2xl font-bold">Submit, Approve, Fund holes.</h2>
           </div>
-          <a href="/admin" class="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold hover:bg-white/5">Open admin</a>
+          <a href="/admin" class="rounded-full border border-smoke/30 px-4 py-2 text-sm font-semibold hover:border-ember/50 hover:text-ember">Login</a>
         </div>
         <p class="mt-4 text-sm leading-6 text-white/70">
-          The prototype keeps the mechanics simple: shared admin password, local SQLite, image uploads, public map, comments, and fake contributions that still feel weirdly compelling.
-        </p>
+          Let the community run these holes. Identify, approve, fund, comment on holes in Chicago. Sell your soul and login here. 
       </div>
     </div>
   </div>
@@ -67,10 +66,10 @@
 <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
   <div class="mb-5 flex items-end justify-between gap-4">
     <div>
-      <div class="text-xs uppercase tracking-[0.26em] text-lane">Featured damage</div>
+      <div class="text-xs uppercase tracking-[0.26em] text-ember">Our holes</div>
       <h2 class="mt-2 font-display text-3xl font-bold">Recently approved holes</h2>
     </div>
-    <a href="/map" class="text-sm font-semibold text-white/70 hover:text-white">See all on the map</a>
+    <a href="/map" class="text-sm font-semibold text-smoke hover:text-ember">Map of all Holes</a>
   </div>
   <div class="grid gap-4 md:grid-cols-3">
     {% if featured_potholes %}
@@ -78,7 +77,7 @@
         {% include "partials/pothole_card.html" %}
       {% endfor %}
     {% else %}
-      <div class="md:col-span-3 rounded-[2rem] border border-dashed border-white/15 bg-white/5 p-8 text-center text-white/65">
+      <div class="md:col-span-3 rounded-[2rem] border border-dashed border-smoke/30 bg-coal p-8 text-center text-smoke">
         No approved potholes yet. Tonight’s first report can have the room’s full attention.
       </div>
     {% endif %}
