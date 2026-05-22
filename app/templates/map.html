@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+  <div class="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-road sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <div class="text-xs uppercase tracking-[0.26em] text-lane">Public pothole map</div>
+      <h1 class="mt-2 font-display text-3xl font-bold">A live atlas of civic disappointment</h1>
+      <p class="mt-2 max-w-2xl text-sm leading-6 text-white/70">Filter by status, browse approved reports, and jump straight into funding or naming rights.</p>
+    </div>
+    <a href="/submit" class="inline-flex items-center justify-center rounded-full bg-lane px-5 py-3 text-sm font-bold text-black">Report a hole</a>
+  </div>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-[0.32fr_0.68fr]">
+    <aside class="rounded-[2rem] border border-white/10 bg-white p-5 text-black shadow-road">
+      <div class="text-xs uppercase tracking-[0.24em] text-black/45">Filters</div>
+      <div id="map-filters" class="mt-4 grid gap-2">
+        {% for status_key, status_label in status_labels.items() %}
+        <label class="flex items-center justify-between rounded-2xl border border-black/10 px-4 py-3 text-sm font-medium">
+          <span>{{ status_label }}</span>
+          <input type="checkbox" value="{{ status_key }}" checked class="map-status-filter h-4 w-4 rounded border-black/20 text-black">
+        </label>
+        {% endfor %}
+      </div>
+      <div class="mt-6 rounded-3xl bg-asphalt p-4 text-white">
+        <div class="text-xs uppercase tracking-[0.24em] text-lane">Prototype mode</div>
+        <p class="mt-3 text-sm leading-6 text-white/72">Markers update from local data only. No money moves. Plenty of feelings do.</p>
+      </div>
+    </aside>
+
+    <div class="rounded-[2rem] border border-white/10 bg-white/5 p-3 shadow-road">
+      <div id="public-map" class="map-panel h-[32rem] rounded-[1.5rem]" data-endpoint="/api/potholes"></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

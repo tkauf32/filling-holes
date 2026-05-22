@@ -1,0 +1,10 @@
+<span class="inline-flex items-center rounded-full px-3 py-2 text-xs font-bold uppercase tracking-[0.18em]
+  {% if pothole.status == 'awaiting_confirmation' %}bg-white/10 text-white
+  {% elif pothole.status == 'pending_funding' %}bg-lane text-black
+  {% elif pothole.status == 'funded' %}bg-limeglow text-black
+  {% elif pothole.status == 'in_queue_to_be_serviced' %}bg-sky-300 text-black
+  {% elif pothole.status == 'servicing' %}bg-orange-300 text-black
+  {% elif pothole.status == 'serviced' %}bg-emerald-300 text-black
+  {% else %}bg-red-200 text-red-800{% endif %}">
+  {{ status_labels[pothole.status] }}
+</span>

@@ -1,0 +1,54 @@
+:root {
+  --asphalt: #101315;
+  --tar: #181d20;
+  --lane: #f7c948;
+  --road-stripe: rgba(247, 201, 72, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(247, 201, 72, 0.08), transparent 26rem),
+    linear-gradient(180deg, #111517 0%, #0b0e10 100%);
+}
+
+.road-glow {
+  position: fixed;
+  inset: auto -10% -10rem;
+  height: 26rem;
+  background:
+    linear-gradient(90deg, transparent 0 15%, var(--road-stripe) 15% 17%, transparent 17% 33%, var(--road-stripe) 33% 35%, transparent 35% 100%),
+    radial-gradient(circle at bottom, rgba(255, 255, 255, 0.03), transparent 60%);
+  filter: blur(2px);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.map-panel {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.leaflet-container {
+  font-family: "Manrope", sans-serif;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.popup-card {
+  min-width: 180px;
+}
+
+.popup-card img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}

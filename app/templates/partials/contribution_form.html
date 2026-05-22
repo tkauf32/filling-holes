@@ -1,0 +1,72 @@
+{% set goal = pothole.funding_goal_cents or 0 %}
+{% set progress = ((pothole.amount_raised_cents / goal) * 100) if goal else 0 %}
+<div id="contribution-panel" class="rounded-[2rem] border border-white/10 bg-white p-6 text-black shadow-road">
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <div class="text-xs uppercase tracking-[0.26em] text-black/45">Fund this fix</div>
+      <h2 class="mt-2 font-display text-3xl font-bold">{{ pothole.amount_raised_cents|money }}</h2>
+      <p class="mt-1 text-sm text-black/60">Raised toward {{ pothole.funding_goal_cents|money }}. Prototype mode: no card required, no money moves. Yet.</p>
+    </div>
+    <div class="rounded-full bg-black px-3 py-2 text-xs font-bold text-white">{{ status_labels[pothole.status] }}</div>
+  </div>
+
+  <div class="mt-5">
+    <div class="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-black/45">
+      <span>Funding progress</span>
+      <span>{{ progress|round(0, 'floor')|int }}%</span>
+    </div>
+    <div class="h-4 overflow-hidden rounded-full bg-black/10">
+      <div class="h-full rounded-full bg-lane transition-all" style="width: {{ [progress, 100]|min }}%"></div>
+    </div>
+  </div>
+
+  <div class="mt-6 grid gap-3 sm:grid-cols-3">
+    <div class="rounded-3xl bg-black/[0.04] p-4">
+      <div class="text-xs uppercase tracking-[0.22em] text-black/40">Estimate</div>
+      <div class="mt-2 font-display text-2xl font-bold">{{ pothole.estimated_cost_cents|money }}</div>
+    </div>
+    <div class="rounded-3xl bg-black/[0.04] p-4">
+      <div class="text-xs uppercase tracking-[0.22em] text-black/40">Leader</div>
+      <div class="mt-2 text-sm font-semibold">{{ top_contributor.display_name if top_contributor and not top_contributor.is_anonymous and top_contributor.display_name else "Anonymous legend" if top_contributor else "Open field" }}</div>
+    </div>
+    <div class="rounded-3xl bg-black/[0.04] p-4">
+      <div class="text-xs uppercase tracking-[0.22em] text-black/40">Naming rights</div>
+      <div class="mt-2 text-sm font-semibold">{% if pothole.pothole_name %}"{{ pothole.pothole_name }}"{% else %}Still available{% endif %}</div>
+    </div>
+  </div>
+
+  {% if contribution_error %}
+  <div class="mt-5 rounded-3xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{{ contribution_error }}</div>
+  {% endif %}
+
+  <form
+    action="/p/{{ pothole.public_id }}/contribute"
+    method="post"
+    hx-post="/p/{{ pothole.public_id }}/contribute"
+    hx-target="#contribution-panel"
+    hx-swap="outerHTML"
+    class="mt-6 grid gap-4"
+  >
+    <div>
+      <label class="mb-2 block text-sm font-semibold">Amount</label>
+      <input type="number" step="0.01" min="1" name="amount" placeholder="10.00" required class="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm">
+    </div>
+    <div>
+      <label class="mb-2 block text-sm font-semibold">Display name</label>
+      <input type="text" name="display_name" placeholder="Optional, unless you want glory" class="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm">
+    </div>
+    <label class="flex items-start gap-3 rounded-2xl border border-black/10 px-4 py-3 text-sm">
+      <input type="checkbox" name="is_anonymous" checked class="mt-1 h-4 w-4 rounded border-black/20 text-black">
+      <span>Contribute anonymously</span>
+    </label>
+    <label class="flex items-start gap-3 rounded-2xl border border-black/10 px-4 py-3 text-sm">
+      <input type="checkbox" name="wants_naming_rights" class="mt-1 h-4 w-4 rounded border-black/20 text-black">
+      <span>Claim naming rights if this becomes the biggest contribution</span>
+    </label>
+    <div>
+      <label class="mb-2 block text-sm font-semibold">Suggested pothole name</label>
+      <input type="text" name="suggested_pothole_name" placeholder="The Lakeview Event Horizon" class="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm">
+    </div>
+    <button type="submit" class="rounded-full bg-lane px-5 py-4 text-sm font-bold text-black">Fund this fix</button>
+  </form>
+</div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title or "FillingHoles.com" }}</title>
+  <meta name="description" content="Chicago's least glamorous crowdfunding platform. Report a hole. Fund a fix. Claim the glory.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/static/css/app.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            asphalt: '#101315',
+            tar: '#181d20',
+            lane: '#f7c948',
+            limeglow: '#8bffb0',
+            slatecard: '#f5f7f8'
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Manrope', 'sans-serif']
+          },
+          boxShadow: {
+            road: '0 18px 48px rgba(0,0,0,0.28)'
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://unpkg.com/htmx.org@2.0.6"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="/static/js/app.js"></script>
+  <script defer src="/static/js/map.js"></script>
+</head>
+<body class="bg-asphalt text-white font-body">
+  <div class="min-h-screen relative overflow-x-hidden">
+    <div class="road-glow"></div>
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-asphalt/80 backdrop-blur">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+        <a href="/" class="flex items-center gap-3">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-lane text-black font-display font-bold shadow-road">FH</span>
+          <div>
+            <div class="font-display text-lg font-bold leading-tight">FillingHoles.com</div>
+            <div class="text-xs uppercase tracking-[0.22em] text-white/55">Chicago V1 Prototype</div>
+          </div>
+        </a>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="/map" class="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/5">View the map</a>
+          <a href="/submit" class="rounded-full bg-lane px-4 py-2 text-sm font-semibold text-black transition hover:brightness-105">Report a hole</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="relative z-10 pb-16">
+      {% if flash %}
+      <div class="mx-auto max-w-4xl px-4 pt-4 sm:px-6">
+        <div class="rounded-3xl border px-4 py-3 text-sm shadow-road {% if flash.kind == 'success' %}border-limeglow/40 bg-limeglow/10 text-limeglow{% elif flash.kind == 'error' %}border-red-400/30 bg-red-400/10 text-red-100{% else %}border-white/15 bg-white/5 text-white{% endif %}">
+          {{ flash.message }}
+        </div>
+      </div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="relative z-10 border-t border-white/10 bg-black/20">
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>Chicago’s least glamorous crowdfunding platform.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/submit" class="hover:text-white">Report a hole</a>
+          <a href="/map" class="hover:text-white">Browse the map</a>
+          <a href="/admin" class="hover:text-white">Admin</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
